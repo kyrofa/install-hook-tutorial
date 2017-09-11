@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+config_file="$SNAP_DATA/hello.conf"
+
+while true; do
+	# First, determine our rate by deterining how long we should sleep
+	sleep_time="$(awk '/^sleep_time/{print $2}' "$config_file")"
+
+	# Now be nice and greet
+	echo "Hello, World!"
+
+	# Now sleep for the time specified in the config file
+	sleep "$sleep_time"
+done
